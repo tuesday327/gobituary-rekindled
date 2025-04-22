@@ -1,0 +1,374 @@
+/************************************************************/
+/*  BASIC LAYOUT                                            */
+/************************************************************/
+
+/*      RESET      */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    line-height: 1.4;
+    color: 
+}
+
+/*      FONTS          */
+
+@font-face {
+    font-family: '';
+    src: url("");
+    font-weight: normal;
+}
+
+/*      VARIABLES      */
+
+:root {
+    
+    /* Color */
+    
+    --dark-gray: #4C5761;
+    --black: #1C2024;
+    
+    --bright: #58B3D6;
+    
+    --background: #D5DADE;
+    --background-rgba: rgba(213,218,222,.5);
+    
+    /* Size */
+    --text-padding: 4ch;
+    
+    --quilt-width: 100vw;
+    --large-patch-width: 100vh;
+    
+    --inner-large-patch: calc(var(--large-patch-width) * (2/3));
+    --inner-small-patch: ;
+    
+    /* Other */
+    
+}
+
+
+/************************************************************/
+/*  BASIC LAYOUT                                            */
+/************************************************************/
+
+html {
+    background: var(--background) ;
+}
+
+body {
+    background: var(--background) url("textures/graveyard.jpg") no-repeat fixed;
+    background-size: cover;
+    width: 100vw;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+img {
+
+}
+
+/*      WRAPPER    */
+
+#wrapper {
+    display: flex;
+}
+
+/*      SIDEBAR    */
+
+#side {
+    width: 25vw;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(to right, var(--background) 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 80%, transparent);
+    mask-image: linear-gradient(to right, black 80%, transparent);
+}
+
+#intro {
+    width: 25vw;
+    height: 100vh;
+    position: fixed;
+    padding: var(--text-padding);
+    background: transparent;
+}
+
+#intro > div {
+    margin-bottom: 2rem;
+}
+
+#intro > p:first-of-type::first-letter {
+    font-size: 2rem;
+}
+
+nav p {
+    margin-bottom: 0;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav a {
+    display: inline-block;
+    margin-bottom: .5rem
+}
+nav a:hover {
+    color: red;
+}
+
+
+/*      QUILT CONTAINER    */
+
+#quilt {
+    display: flex;
+    height: var(--large-patch-width);
+    max-width: 100vw;
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+
+#quilt > div {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+}
+
+#quilt .square {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    transition: background 2s ease;
+}
+
+#quilt .square::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--bright);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 2s ease;
+}
+
+#quilt .square > * {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+}
+
+.square.center {
+    display: block;
+}
+
+/*      QUILT FORMATS     */
+
+#quilt .large, #quilt .small {
+    transition: all .5s ease;
+}
+
+#quilt .large {
+    width: var(--large-patch-width);
+    height: var(--large-patch-width);
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+#quilt .large .square {
+    width: calc(var(--large-patch-width) / 3);
+    height: calc(var(--large-patch-width) / 3);
+}
+
+/* Top Row */
+#quilt .large .square:nth-child(1) {
+    -webkit-mask-image: url("masks/quilt_mask_grid_top-left.svg");
+    mask-image: url("masks/quilt_mask_grid_top-left.svg");
+}
+#quilt .large .square:nth-child(2) {
+    -webkit-mask-image: url("masks/quilt_mask_grid_top-center.svg");
+    mask-image: url("masks/quilt_mask_grid_top-center.svg");
+}
+#quilt .large .square:nth-child(3) {
+    -webkit-mask-image: url("masks/quilt_mask_grid_top-right.svg");
+    mask-image: url("masks/quilt_mask_grid_top-right.svg");
+}
+
+/* Middle Row */
+#quilt .large .square:nth-child(4) {
+    -webkit-mask-image: url("masks/quilt_mask_grid_center-left.svg");
+    mask-image: url("masks/quilt_mask_grid_center-left.svg");
+}
+#quilt .large .square:nth-child(6) {
+    -webkit-mask-image: url("masks/quilt_mask_grid_center-right.svg");
+    mask-image: url("masks/quilt_mask_grid_center-right.svg");
+}
+
+/* Bottom Row */
+#quilt .large .square:nth-child(7) {
+    -webkit-mask-image: url("masks/quilt_mask_grid_bottom-left.svg");
+    mask-image: url("masks/quilt_mask_grid_bottom-left.svg");
+}
+#quilt .large .square:nth-child(8) {
+    -webkit-mask-image: url("masks/quilt_mask_grid_bottom-center.svg");
+    mask-image: url("masks/quilt_mask_grid_bottom-center.svg");
+}
+#quilt .large .square:nth-child(9) {
+    -webkit-mask-image: url("masks/quilt_mask_grid_bottom-right.svg");
+    mask-image: url("masks/quilt_mask_grid_bottom-right.svg");
+}
+
+#quilt .small {
+    width: calc(var(--large-patch-width) / 2);
+    height: calc(var(--large-patch-width) / 2);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#quilt > div:nth-of-type(even) .small .square:nth-child(1) {
+    -webkit-mask-image: url("masks/quilt_mask_single_bottom-left.svg");
+    mask-image: url("masks/quilt_mask_single_bottom-left.svg");
+}
+#quilt > div:nth-of-type(even) .small .square:nth-child(1) img {
+    object-position: bottom left;
+}
+
+#quilt > div:nth-of-type(even) .small .square:nth-child(2) {
+    -webkit-mask-image: url("masks/quilt_mask_single_bottom-right.svg");
+    mask-image: url("masks/quilt_mask_single_bottom-right.svg");
+}
+#quilt > div:nth-of-type(even) .small .square:nth-child(2) img {
+    object-position: bottom right;
+}
+
+#quilt > div:nth-of-type(odd) .small .square:nth-child(1) {
+    -webkit-mask-image: url("masks/quilt_mask_single_top-right.svg");
+    mask-image: url("masks/quilt_mask_single_top-left.svg");
+}
+#quilt > div:nth-of-type(odd) .small .square:nth-child(1) img {
+    object-position: top left;
+}
+
+#quilt > div:nth-of-type(odd) .small .square:nth-child(2) {
+    -webkit-mask-image: url("masks/quilt_mask_single_top-left.svg");
+    mask-image: url("masks/quilt_mask_single_top-right.svg");
+}
+#quilt > div:nth-of-type(odd) .small .square:nth-child(2) img {
+    object-position: top right;
+}
+
+/*      INFO     */
+
+#quilt .story, #quilt .name {
+    position: absolute;
+    left: 0;
+}
+
+#quilt .name {
+    padding: calc(var(--large-patch-width) / 6);
+    z-index: 100;
+}
+
+#quilt .story {
+    width: var(--inner-large-patch);
+    height: var(--inner-large-patch);
+    margin: calc(var(--large-patch-width) / 6);
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: -1001;
+}
+
+#quilt .story .text {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    border: 5px solid var(--background);
+    padding: 50% var(--text-padding) var(--text-padding) var(--text-padding);
+    opacity: 0;
+    filter: blur(6px);
+    background: var(--background-rgba);
+    transition: all 1s ease;
+}
+
+#quilt > div:target .story {
+    opacity: 1;
+    backdrop-filter: blur(4px);
+    z-index: 1;
+}
+
+#quilt > div:target .story .text {
+    padding-top: var(--text-padding);
+    opacity: 1;
+    filter: blur(0);
+}
+
+
+
+#quilt > div:target .square::after {
+    opacity: 1;
+    mix-blend-mode: soft-light;
+}
+
+#quilt > div:target .square img {
+    
+}
+
+
+/*      EFFECTS     */
+
+#effects {
+    width: 100%;
+    height: 240px;
+    position: fixed;
+    bottom: 0;
+    z-index: 1001;
+    backdrop-filter: blur(6px) grayscale(1);
+    background-image: linear-gradient(transparent, var(--dark-gray));
+    -webkit-mask-image: linear-gradient(transparent, black);
+    mask-image: linear-gradient(transparent, black);
+    pointer-events: none;
+}
+
+/*      MEDIA QUERY      */
+
+@media screen and (max-width: 720px) {
+    
+}
+
