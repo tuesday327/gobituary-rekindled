@@ -1,0 +1,37 @@
+html {
+    background: white;
+}
+
+body {
+    padding: 0 var(--page-padding) ;
+    background: white;
+}
+
+#wrapper {
+    display: block;
+}
+
+header, main {
+    width: 100%;
+}
+
+section {
+    margin: 6vw 0;
+    display: flex;
+}
+
+/************************************************************/
+/*  ARTIFACTS                                               */
+/************************************************************/
+
+.artifact {
+    width: 25%;
+    flex: 0 0 25%;
+    margin-right: 2vw;
+}
+
+.description {
+    width: 75%;
+    flex: 0 0 75%;
+}
+

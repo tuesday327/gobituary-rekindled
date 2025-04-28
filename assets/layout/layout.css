@@ -42,9 +42,31 @@ html {
 /*      FONTS          */
 
 @font-face {
-    font-family: '';
-    src: url("");
+    font-family: "Spectral";
+    src: url("fonts/spectral-regular.ttf");
     font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Spectral";
+    src: url("fonts/spectral-italic.ttf");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Spectral";
+    src: url("fonts/spectral-extrabold.ttf");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Spectral";
+    src: url("fonts/spectral-extrabolditalic.ttf");
+    font-weight: bold;
+    font-style: italic;
 }
 
 /*      VARIABLES      */
@@ -63,12 +85,7 @@ html {
     
     /* Size */
     --text-padding: 4ch;
-    
-    --quilt-width: 100vw;
-    --large-patch-width: 100vh;
-    
-    --inner-large-patch: calc(var(--large-patch-width) * (2/3));
-    --inner-small-patch: ;
+    --page-padding: 12vw;
     
     /* Other */
     
@@ -84,6 +101,7 @@ html {
 }
 
 body {
+    font-family: "Spectral", "Times New Roman", serif;
     background: var(--background) url("textures/graveyard.jpg") no-repeat fixed;
     background-size: cover;
     width: 100vw;
@@ -103,50 +121,6 @@ img {
     display: flex;
 }
 
-/*      SIDEBAR    */
-
-#side {
-    width: 25vw;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 2;
-    background: linear-gradient(to right, var(--background) 80%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, black 80%, transparent);
-    mask-image: linear-gradient(to right, black 80%, transparent);
-}
-
-#intro {
-    width: 25vw;
-    height: 100vh;
-    position: fixed;
-    padding: var(--text-padding);
-    background: transparent;
-}
-
-#intro > div {
-    margin-bottom: 2rem;
-}
-
-#intro > p:first-of-type::first-letter {
-    font-size: 2rem;
-}
-
-nav p {
-    margin-bottom: 0;
-}
-
-nav ul {
-    list-style: none;
-}
-
-nav a {
-    display: inline-block;
-    margin-bottom: .5rem
-}
-nav a:hover {
-    color: red;
-}
-
 
 /*      QUILT CONTAINER    */
 
@@ -158,196 +132,46 @@ nav a:hover {
     overflow-x: scroll;
 }
 
-#quilt > div {
+#quilt .square {
+    width: 100vh;
+    flex: 0 0 100vh;
+    height: 100vh;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
     position: relative;
+    overflow: hidden;
 }
 
-#quilt .square {
-    position: relative;
+#quilt .square .name {
+    color: white;
+    width: calc(100vh / 3);
+    height: calc(100vh / 3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    text-align: center;
+}
+#quilt .square .name * {
     width: 100%;
+}
+
+#quilt .name:hover + img {
+    opacity: .5;
+}
+
+#quilt img {
+     width: 100%;
     height: 100%;
-    overflow: hidden;
+    -webkit-mask-image: url("masks/quilt_mask_grid_bottom-right.svg");
+    mask-image: url("masks/quilt_mask_grid_full.svg");
     mask-repeat: no-repeat;
     mask-size: contain;
-    transition: background 2s ease;
-}
-
-#quilt .square::after {
-    content: '';
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: var(--bright);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 2s ease;
-}
-
-#quilt .square > * {
-    width: 100%;
-    height: 100%;
-    position: absolute;
     object-fit: cover;
-}
-
-.square.center {
-    display: block;
-}
-
-/*      QUILT FORMATS     */
-
-#quilt .large, #quilt .small {
-    transition: all .5s ease;
-}
-
-#quilt .large {
-    width: var(--large-patch-width);
-    height: var(--large-patch-width);
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-}
-
-#quilt .large .square {
-    width: calc(var(--large-patch-width) / 3);
-    height: calc(var(--large-patch-width) / 3);
-}
-
-/* Top Row */
-#quilt .large .square:nth-child(1) {
-    -webkit-mask-image: url("masks/quilt_mask_grid_top-left.svg");
-    mask-image: url("masks/quilt_mask_grid_top-left.svg");
-}
-#quilt .large .square:nth-child(2) {
-    -webkit-mask-image: url("masks/quilt_mask_grid_top-center.svg");
-    mask-image: url("masks/quilt_mask_grid_top-center.svg");
-}
-#quilt .large .square:nth-child(3) {
-    -webkit-mask-image: url("masks/quilt_mask_grid_top-right.svg");
-    mask-image: url("masks/quilt_mask_grid_top-right.svg");
-}
-
-/* Middle Row */
-#quilt .large .square:nth-child(4) {
-    -webkit-mask-image: url("masks/quilt_mask_grid_center-left.svg");
-    mask-image: url("masks/quilt_mask_grid_center-left.svg");
-}
-#quilt .large .square:nth-child(6) {
-    -webkit-mask-image: url("masks/quilt_mask_grid_center-right.svg");
-    mask-image: url("masks/quilt_mask_grid_center-right.svg");
-}
-
-/* Bottom Row */
-#quilt .large .square:nth-child(7) {
-    -webkit-mask-image: url("masks/quilt_mask_grid_bottom-left.svg");
-    mask-image: url("masks/quilt_mask_grid_bottom-left.svg");
-}
-#quilt .large .square:nth-child(8) {
-    -webkit-mask-image: url("masks/quilt_mask_grid_bottom-center.svg");
-    mask-image: url("masks/quilt_mask_grid_bottom-center.svg");
-}
-#quilt .large .square:nth-child(9) {
-    -webkit-mask-image: url("masks/quilt_mask_grid_bottom-right.svg");
-    mask-image: url("masks/quilt_mask_grid_bottom-right.svg");
-}
-
-#quilt .small {
-    width: calc(var(--large-patch-width) / 2);
-    height: calc(var(--large-patch-width) / 2);
-    display: flex;
-    flex-wrap: wrap;
-}
-
-#quilt > div:nth-of-type(even) .small .square:nth-child(1) {
-    -webkit-mask-image: url("masks/quilt_mask_single_bottom-left.svg");
-    mask-image: url("masks/quilt_mask_single_bottom-left.svg");
-}
-#quilt > div:nth-of-type(even) .small .square:nth-child(1) img {
-    object-position: bottom left;
-}
-
-#quilt > div:nth-of-type(even) .small .square:nth-child(2) {
-    -webkit-mask-image: url("masks/quilt_mask_single_bottom-right.svg");
-    mask-image: url("masks/quilt_mask_single_bottom-right.svg");
-}
-#quilt > div:nth-of-type(even) .small .square:nth-child(2) img {
-    object-position: bottom right;
-}
-
-#quilt > div:nth-of-type(odd) .small .square:nth-child(1) {
-    -webkit-mask-image: url("masks/quilt_mask_single_top-right.svg");
-    mask-image: url("masks/quilt_mask_single_top-left.svg");
-}
-#quilt > div:nth-of-type(odd) .small .square:nth-child(1) img {
-    object-position: top left;
-}
-
-#quilt > div:nth-of-type(odd) .small .square:nth-child(2) {
-    -webkit-mask-image: url("masks/quilt_mask_single_top-left.svg");
-    mask-image: url("masks/quilt_mask_single_top-right.svg");
-}
-#quilt > div:nth-of-type(odd) .small .square:nth-child(2) img {
-    object-position: top right;
-}
-
-/*      INFO     */
-
-#quilt .story, #quilt .name {
-    position: absolute;
-    left: 0;
-}
-
-#quilt .name {
-    padding: calc(var(--large-patch-width) / 6);
-    z-index: 100;
-}
-
-#quilt .story {
-    width: var(--inner-large-patch);
-    height: var(--inner-large-patch);
-    margin: calc(var(--large-patch-width) / 6);
-    opacity: 0;
     transition: opacity 1s ease;
-    z-index: -1001;
-}
-
-#quilt .story .text {
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    border: 5px solid var(--background);
-    padding: 50% var(--text-padding) var(--text-padding) var(--text-padding);
-    opacity: 0;
-    filter: blur(6px);
-    background: var(--background-rgba);
-    transition: all 1s ease;
-}
-
-#quilt > div:target .story {
-    opacity: 1;
-    backdrop-filter: blur(4px);
-    z-index: 1;
-}
-
-#quilt > div:target .story .text {
-    padding-top: var(--text-padding);
-    opacity: 1;
-    filter: blur(0);
-}
-
-
-
-#quilt > div:target .square::after {
-    opacity: 1;
-    mix-blend-mode: soft-light;
-}
-
-#quilt > div:target .square img {
-    
+    pointer-events: none;
 }
 
 

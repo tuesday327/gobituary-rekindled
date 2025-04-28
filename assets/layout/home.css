@@ -1,0 +1,12 @@
+#project-introduction {
+    width: 100%;
+    height: 100vh;
+    padding: var(--page-padding);
+    background: white;
+}
+
+.description {
+    background: black;
+    max-width: 50%;
+    height: 100%;
+}
