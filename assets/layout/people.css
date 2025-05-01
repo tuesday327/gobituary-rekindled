@@ -1,24 +1,120 @@
-html {
-    background: white;
-}
 
-body {
-    padding: 0 var(--page-padding) ;
-    background: white;
-}
 
 #wrapper {
     display: block;
 }
 
-header, main {
+main {
     width: 100%;
+    padding: 0 var(--page-padding);
 }
 
 section {
+
     margin: 6vw 0;
     display: flex;
 }
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 2ch var(--page-padding) var(--effects-height) var(--page-padding);
+    font-variant: small-caps;
+    text-transform: lowercase;
+    white-space: nowrap;
+}
+
+footer a {
+    padding: 1ch 0;
+}
+
+footer .prev::before {
+    content: '❮';
+    margin-right: 1ch;
+}
+
+footer .next::after {
+    content: '❯';
+    margin-left: 1ch;
+}
+
+footer .prev::before, footer .next::after {
+    transition: margin .5s ease, padding .5s ease;
+}
+
+footer .prev:hover::before {
+    margin-left: -1ch;
+    padding-right: 1ch;
+}
+
+footer .next:hover::after {
+    margin-right: -1ch;
+    padding-left: 1ch;
+}
+
+/*      HEADER      */
+
+header {
+    width: 100%;
+    padding-bottom: var(--side-padding);
+	animation: gradient 20s ease infinite;
+    pointer-events: none;
+    position: relative;
+    overflow: hidden;
+}
+
+header .person {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+
+header .name {
+    width: 100%;
+    margin-right: -30vw;
+    margin-bottom: -2ch;
+    padding-top: var(--page-padding);
+    padding-left: var(--page-padding);
+    position: relative;
+    z-index: 1;
+}
+
+header .details {
+    display: flex;
+    justify-content: space-between;
+    padding: 1ch var(--page-padding);
+    border-top: 4pt double var(--black);
+    position: relative;
+    z-index: 1;
+}
+
+header .details h2:last-child {
+    font-variant: small-caps;
+    text-transform: lowercase;
+}
+
+header .headshot {
+    width: 30vw;
+    height: 30vw;
+    background: var(--gradient);
+    animation: gradient 20s ease infinite;
+    -webkit-mask-image: url("masks/quilt_mask_tracks_top-right.svg");
+    mask-image: url("masks/quilt_mask_tracks_top-right.svg");
+    mask-repeat: no-repeat;
+    mask-size: cover;
+}
+header .headshot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: overlay;
+    -webkit-mask-image: url("masks/quilt_mask_tracks_top-right.svg");
+    mask-image: url("masks/quilt_mask_tracks_top-right.svg");
+    mask-repeat: no-repeat;
+    mask-size: cover;
+}
+
+
 
 /************************************************************/
 /*  ARTIFACTS                                               */
@@ -28,6 +124,20 @@ section {
     width: 25%;
     flex: 0 0 25%;
     margin-right: 2vw;
+    font-size: .75rem
+}
+
+.artifact img {
+    width: 100%;
+}
+
+.artifact > p {
+    font-size: 1rem;
+    text-align: justify;
+}
+.artifact > p::first-letter {
+    display: inline-block;
+    margin-left: -1ch;
 }
 
 .description {
@@ -35,3 +145,30 @@ section {
     flex: 0 0 75%;
 }
 
+.caption {
+    margin-top: 1vw;
+}
+
+.caption .title {
+    font-weight: 600;
+}
+
+
+/*      MEDIA QUERY      */
+
+@media screen and (max-width: 720px) {
+    
+    section {
+        flex-wrap: wrap;
+        border-bottom: 1px solid var(--black);
+        padding: 2rem 0;
+        margin: 0;
+    }
+    
+    .description, .artifact {
+        width: 100%;
+        flex: 0 0 100%;
+    }
+    
+    .
+}

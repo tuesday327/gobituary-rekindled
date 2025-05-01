@@ -75,20 +75,39 @@ html {
     
     /* Color */
     
-    --dark-gray: #4C5761;
+    --gray: #D5DADE;
+    --yellow: rgba(242,232,92,.25);
+    --blue: rgba(99,179,214,.5);
+    
     --black: #1C2024;
     
-    --bright: #58B3D6;
+    --bright: #005DCA;
     
     --background: #D5DADE;
     --background-rgba: rgba(213,218,222,.5);
+    
+    --gradient:  linear-gradient(-45deg, var(--gray), white 20%, var(--yellow), var(--gray), var(--blue)) ;
     
     /* Size */
     --text-padding: 4ch;
     --page-padding: 12vw;
     
-    /* Other */
+    --effects-height: 220px;
     
+    /* Transition */
+    --link-speed: all .5s ease;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 
@@ -97,12 +116,14 @@ html {
 /************************************************************/
 
 html {
-    background: var(--background) ;
+    background: var(--background);
 }
 
 body {
+    color: var(--black);
     font-family: "Spectral", "Times New Roman", serif;
-    background: var(--background) url("textures/graveyard.jpg") no-repeat fixed;
+    line-height: 1.25;
+    background: white;
     background-size: cover;
     width: 100vw;
 }
@@ -111,8 +132,13 @@ p {
     margin-bottom: 1rem;
 }
 
-img {
-
+a {
+    color: var(--bright);
+    text-decoration: none;
+    transition: var(--link-speed);
+}
+a:hover, a:active, a:visited {
+    color: var(--gray);
 }
 
 /*      WRAPPER    */
@@ -121,70 +147,17 @@ img {
     display: flex;
 }
 
-
-/*      QUILT CONTAINER    */
-
-#quilt {
-    display: flex;
-    height: var(--large-patch-width);
-    max-width: 100vw;
-    overflow-y: hidden;
-    overflow-x: scroll;
-}
-
-#quilt .square {
-    width: 100vh;
-    flex: 0 0 100vh;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-}
-
-#quilt .square .name {
-    color: white;
-    width: calc(100vh / 3);
-    height: calc(100vh / 3);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    text-align: center;
-}
-#quilt .square .name * {
-    width: 100%;
-}
-
-#quilt .name:hover + img {
-    opacity: .5;
-}
-
-#quilt img {
-     width: 100%;
-    height: 100%;
-    -webkit-mask-image: url("masks/quilt_mask_grid_bottom-right.svg");
-    mask-image: url("masks/quilt_mask_grid_full.svg");
-    mask-repeat: no-repeat;
-    mask-size: contain;
-    object-fit: cover;
-    transition: opacity 1s ease;
-    pointer-events: none;
-}
-
-
 /*      EFFECTS     */
 
 #effects {
     width: 100%;
-    height: 240px;
+    height: var(--effects-height);
     position: fixed;
     bottom: 0;
     z-index: 1001;
     backdrop-filter: blur(6px) grayscale(1);
-    background-image: linear-gradient(transparent, var(--dark-gray));
+    background-image: var(--gradient);
+    animation: gradient 20s ease infinite;
     -webkit-mask-image: linear-gradient(transparent, black);
     mask-image: linear-gradient(transparent, black);
     pointer-events: none;
@@ -193,6 +166,13 @@ img {
 /*      MEDIA QUERY      */
 
 @media screen and (max-width: 720px) {
+   
+    :root {
+        --page-padding: 6vw;
+    }
     
+    h2 {
+        font-size: 1rem;
+    }
 }
 
