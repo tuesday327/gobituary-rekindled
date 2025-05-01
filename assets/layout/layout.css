@@ -35,8 +35,6 @@ ul {
 
 html {
     font-size: 16px;
-    line-height: 1.4;
-    color: 
 }
 
 /*      FONTS          */
@@ -76,10 +74,13 @@ html {
     /* Color */
     
     --gray: #D5DADE;
+    
     --yellow: rgba(242,232,92,.2);
     --blue: rgba(99,179,214,.3);
     
+    --gray-blend: rgba(213,218,222,.5);
     --blue-solid: rgba(99,179,214,.6);
+    
     
     --black: #1C2024;
     
@@ -95,7 +96,7 @@ html {
     --text-padding: 4ch;
     --page-padding: 12vw;
     
-    --effects-height: 200px;
+    --effects-height: 180px;
     
     /* Transition */
     --link-speed: all .5s ease;
@@ -125,7 +126,7 @@ html {
 body {
     color: var(--black);
     font-family: "Spectral", "Times New Roman", serif;
-    line-height: 1.25;
+    line-height: 1.5;
     background: white;
     background-size: cover;
     width: 100vw;

@@ -91,6 +91,10 @@ header .details {
     z-index: 1;
 }
 
+header h2 {
+    font-weight: 100;
+}
+
 header .details h2:last-child {
     font-variant: small-caps;
     text-transform: lowercase;
@@ -135,11 +139,11 @@ header .headshot img {
     width: 100%;
 }
 
-.artifact > p {
+.artifact > p:first-child {
     font-size: 1rem;
     text-align: justify;
 }
-.artifact > p::first-letter {
+.artifact > p:first-child::first-letter {
     display: inline-block;
     margin-left: -1ch;
 }
