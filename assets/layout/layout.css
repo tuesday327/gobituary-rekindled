@@ -43,7 +43,7 @@ html {
 
 @font-face {
     font-family: "Spectral";
-    src: url("fonts/spectral-regular.ttf");
+    src: url("fonts/spectral.ttf");
     font-weight: normal;
     font-style: normal;
 }
@@ -57,14 +57,14 @@ html {
 
 @font-face {
     font-family: "Spectral";
-    src: url("fonts/spectral-extrabold.ttf");
+    src: url("fonts/spectral-bold.ttf");
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Spectral";
-    src: url("fonts/spectral-extrabolditalic.ttf");
+    src: url("fonts/spectral-bolditalic.ttf");
     font-weight: bold;
     font-style: italic;
 }
@@ -76,23 +76,26 @@ html {
     /* Color */
     
     --gray: #D5DADE;
-    --yellow: rgba(242,232,92,.25);
-    --blue: rgba(99,179,214,.5);
+    --yellow: rgba(242,232,92,.2);
+    --blue: rgba(99,179,214,.3);
+    
+    --blue-solid: rgba(99,179,214,.6);
     
     --black: #1C2024;
     
     --bright: #005DCA;
     
     --background: #D5DADE;
-    --background-rgba: rgba(213,218,222,.5);
     
-    --gradient:  linear-gradient(-45deg, var(--gray), white 20%, var(--yellow), var(--gray), var(--blue)) ;
+    --effects-gradient:  linear-gradient(-45deg, var(--gray) 10%, white 20%, var(--yellow) 30%, var(--blue) 35%, var(--gray) 80%);
+    
+    --bg-gradient:  linear-gradient(white, var(--gray), var(--yellow), var(--blue));
     
     /* Size */
     --text-padding: 4ch;
     --page-padding: 12vw;
     
-    --effects-height: 220px;
+    --effects-height: 200px;
     
     /* Transition */
     --link-speed: all .5s ease;
@@ -116,7 +119,7 @@ html {
 /************************************************************/
 
 html {
-    background: var(--background);
+    background: var(--background-gradient);
 }
 
 body {
@@ -132,12 +135,12 @@ p {
     margin-bottom: 1rem;
 }
 
-a {
+a, a:visited {
     color: var(--bright);
     text-decoration: none;
     transition: var(--link-speed);
 }
-a:hover, a:active, a:visited {
+a:hover, a:active {
     color: var(--gray);
 }
 
@@ -154,9 +157,9 @@ a:hover, a:active, a:visited {
     height: var(--effects-height);
     position: fixed;
     bottom: 0;
-    z-index: 1001;
+    z-index: 4;
     backdrop-filter: blur(6px) grayscale(1);
-    background-image: var(--gradient);
+    background-image: var(--effects-gradient);
     animation: gradient 20s ease infinite;
     -webkit-mask-image: linear-gradient(transparent, black);
     mask-image: linear-gradient(transparent, black);
