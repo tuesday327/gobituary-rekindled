@@ -68,8 +68,8 @@ body {
 }
 
 #quilt .square .name {
-    width: calc(50vw / 3);
-    height: calc(50vw / 3);
+    width: calc(100% / 3);
+    height: calc(100% / 3);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -103,3 +103,24 @@ body {
     mix-blend-mode: soft-light;
     z-index: -1;
 }
+
+/*      MEDIA QUERY      */
+
+@media screen and (max-width: 720px) {
+    
+    #quilt {
+        display: block;
+    }
+    
+    #quilt .square {
+        width: 100vw;
+        height: 100vw;
+        margin-left: unset;
+        margin-top: -33.4vw;
+    }
+    #quilt .square:first-child {
+        margin-left: unset;
+        margin-top: unset;
+    }
+}
+

@@ -178,5 +178,8 @@ header .headshot img {
         flex: 0 0 100%;
     }
     
-    .
+    header .details {
+        display: block;
+        border: none;
+    }
 }
