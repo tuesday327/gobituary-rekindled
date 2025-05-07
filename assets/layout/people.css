@@ -186,4 +186,13 @@ header .headshot img {
         display: block;
         border: none;
     }
+    
+    .path {
+        display: block;
+    }
+    .path a {
+        text-align: center;
+        display: block;
+        width: 100%;
+    }
 }
