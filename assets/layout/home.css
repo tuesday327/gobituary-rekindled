@@ -1,7 +1,7 @@
 body {
-    background: var(--gradient) fixed;
-	background-size: 400% 400%;
-	animation: gradient 100s ease infinite;
+    background: url(misc/hero_a.png) no-repeat fixed, var(--bg-gradient);
+    background-position: 0% 70%;
+    background-size: cover;
 }
 
 #project-introduction {
@@ -13,15 +13,30 @@ body {
 }
 
 .description {
-    max-width: 66ch;
+    max-width: 60ch;
     height: 100%;
+}
+
+.description p:first-child::first-letter {
+    font-size: 2rem;
+    line-height: 0;
+}
+.description span {
+    margin-left: -1ch;
+}
+
+.description .logo {
+    max-width: 200px;
+    margin-top: 2rem;
 }
 
 .overlay {
     width: 100vw;
     height: 100vh;
     position: fixed;
-    background: var(--gray);
+    background: var(--bg-gradient);
+    background-size: 400% 400%;
+	animation: gradient 100s ease infinite;
     -webkit-mask-image: url("masks/quilt_mask_pattern_full.svg");
     mask-image: url("masks/quilt_mask_pattern_full.svg");
     mask-repeat: no-repeat;
