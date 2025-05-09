@@ -141,13 +141,14 @@ header .headshot img {
 
 .artifact img {
     width: 100%;
+    margin-bottom: 1vw;
 }
 
-.artifact > p:first-child {
+.artifact > p:first-child, .quote {
     font-size: 1rem;
     text-align: justify;
 }
-.artifact > p:first-child::first-letter {
+.artifact > p:first-child::first-letter, .quote::first-letter {
     display: inline-block;
     margin-left: -1ch;
 }
@@ -157,12 +158,16 @@ header .headshot img {
     flex: 0 0 75%;
 }
 
-.caption {
-    margin-top: 1vw;
+.caption:first-of-type {
+    margin-bottom: 1vw;
 }
 
 .caption .title {
     font-weight: 600;
+}
+
+.quote {
+    margin-bottom: 1vw;
 }
 
 

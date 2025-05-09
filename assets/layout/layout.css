@@ -75,7 +75,7 @@ html {
     
     --gray: #D5DADE;
     
-    --yellow: rgba(242,232,92,.2);
+    --yellow: rgba(242,232,92,.3);
     --blue: rgba(99,179,214,.3);
     
     --gray-blend: rgba(213,218,222,.5);
@@ -133,7 +133,7 @@ body {
 }
 
 p {
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
 }
 
 a, a:visited {
