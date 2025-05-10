@@ -141,6 +141,7 @@ body {
     
     #quilt {
         display: block;
+        height: unset;
     }
     
     #quilt .square {
