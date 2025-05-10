@@ -145,9 +145,14 @@ a:hover, a:active {
     color: var(--gray);
 }
 
-/*      WRAPPER    */
+main {
+    width: 100%;
+    padding: 0 var(--page-padding);
+}
 
-#wrapper {
+section {
+
+    margin: 6vw 0;
     display: flex;
 }
 
@@ -165,6 +170,73 @@ a:hover, a:active {
     -webkit-mask-image: linear-gradient(transparent, black);
     mask-image: linear-gradient(transparent, black);
     pointer-events: none;
+}
+
+/*  FOOTER  */
+
+.path {
+    display: flex;
+    justify-content: space-between;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    white-space: nowrap;
+    margin: 2rem 0;
+    position: relative;
+    z-index: 5;
+}
+
+footer {
+    padding: 2ch var(--page-padding) var(--effects-height) var(--page-padding);
+    background: url("../layout/misc/logo_white.svg") no-repeat left calc(100% + 2px);
+    background-size: 40%;
+}
+
+.path a {
+    padding: 1ch 0;
+}
+
+.path .prev::before {
+    content: '❮';
+    margin-right: 1ch;
+}
+
+.path .next::after {
+    content: '❯';
+    margin-left: 1ch;
+}
+
+.path .prev::before, .path .next::after {
+    transition: margin .5s ease, padding .5s ease;
+}
+
+.path .prev:hover::before {
+    margin-left: -1ch;
+    padding-right: 1ch;
+}
+
+.path .next:hover::after {
+    margin-right: -1ch;
+    padding-left: 1ch;
+}
+
+/*      HEADER      */
+
+header {
+    width: 100%;
+    padding-bottom: var(--side-padding);
+	animation: gradient 20s ease infinite;
+    pointer-events: none;
+    position: relative;
+    overflow: hidden;
+}
+
+header .details {
+    display: flex;
+    justify-content: space-between;
+    padding: 1ch var(--page-padding);
+    border-top: 4pt double var(--black);
+    position: relative;
+    z-index: 1;
 }
 
 /*      MEDIA QUERY      */

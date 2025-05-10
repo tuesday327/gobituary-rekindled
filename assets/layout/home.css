@@ -1,7 +1,17 @@
+/************************************************************/
+/*  LAYOUT FOR HOME                                         */
+/************************************************************/
+
 body {
     background: url(misc/hero_a.png) no-repeat fixed, var(--bg-gradient);
     background-position: 0% 70%;
     background-size: cover;
+}
+
+/*      WRAPPER    */
+
+#wrapper {
+    display: flex;
 }
 
 #project-introduction {
@@ -10,6 +20,7 @@ body {
     padding: var(--page-padding);
     position: relative;
     z-index: 2;
+    margin-bottom: 5vh;
 }
 
 .description {
@@ -41,8 +52,8 @@ body {
     mask-image: url("masks/quilt_mask_pattern_full.svg");
     mask-repeat: no-repeat;
     mask-size: cover;
-    mix-blend-mode: sreen;
-    opacity: .1;
+    mix-blend-mode: overlay;
+    opacity: .15;
     z-index: 1001;
     pointer-events: none;
 }
@@ -53,7 +64,8 @@ body {
     display: flex;
     height: 100vh;
     max-width: 100vw;
-    padding-top: 10vh;
+    align-items: center;
+    padding: 10vh 0;
     background:  linear-gradient(transparent 0%, var(--blue)) no-repeat;
     background-size: cover;
     overflow-y: hidden;
